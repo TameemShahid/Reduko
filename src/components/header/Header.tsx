@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand>
           <img
             data-testid="header_logo"
             alt="Sudoku logo"
