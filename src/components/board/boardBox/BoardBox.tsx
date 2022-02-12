@@ -27,6 +27,16 @@ const BoardBox = ({ id, setValue }: PropTypes) => {
         onChange={handleChange}
         min="1"
         max="9"
+        style={{
+          borderRight:
+            Number(id.charAt(1)) % 3 === 0
+              ? 'solid rgb(222, 226, 230)'
+              : 'none',
+          borderBottom:
+            id.charAt(0) === 'C' || id.charAt(0) === 'F'
+              ? 'solid rgb(222, 226, 230)'
+              : 'none',
+        }}
       />
     </td>
   );
