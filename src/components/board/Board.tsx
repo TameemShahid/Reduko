@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import BoardRow from './boardRow/BoardRow';
 import { Container, Card, Table } from 'react-bootstrap';
+import ButtonStrip from '../buttonStrip/ButtonStrip';
 
 const Board = () => {
   const [values, setValues] = useState({});
@@ -32,15 +33,18 @@ const Board = () => {
   };
 
   return (
-    <Container className="d-flex justify-content-center mt-4">
-      <Card style={{ width: '500px', height: '500px' }}>
-        <Card.Body>
-          <Table bordered>
-            <tbody className="border-5">{generateRows()}</tbody>
-          </Table>
-        </Card.Body>
-      </Card>
-    </Container>
+    <div>
+      <ButtonStrip />
+      <Container className="d-flex justify-content-center mt-2">
+        <Card style={{ width: '500px', height: '500px' }}>
+          <Card.Body>
+            <Table bordered>
+              <tbody className="border-5">{generateRows()}</tbody>
+            </Table>
+          </Card.Body>
+        </Card>
+      </Container>
+    </div>
   );
 };
 
