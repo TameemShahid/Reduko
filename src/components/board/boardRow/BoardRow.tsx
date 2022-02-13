@@ -2,20 +2,13 @@ import BoardBox from '../boardBox/BoardBox';
 
 interface PropTypes {
   rowNo: string;
-  setValue: Function;
 }
 
-const BoardRow = ({ rowNo, setValue }: PropTypes) => {
+const BoardRow = ({ rowNo }: PropTypes) => {
   const generateRow = () => {
     const row = [];
     for (let index = 1; index <= 9; index++) {
-      row.push(
-        <BoardBox
-          id={`${rowNo}${index}`}
-          key={`${rowNo}${index}`}
-          setValue={setValue}
-        />,
-      );
+      row.push(<BoardBox id={`${rowNo}${index}`} key={`${rowNo}${index}`} />);
     }
     return row;
   };

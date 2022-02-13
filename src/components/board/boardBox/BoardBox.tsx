@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getBoxValue,
+  getInitialBoxValue,
+  update,
+} from '../../../data/boardSlice';
+import { IRootState } from '../../../store/store';
 import './style.css';
 
 interface PropTypes {
   id: string;
-  setValue: Function;
 }
 
-const BoardBox = ({ id, setValue }: PropTypes) => {
-  const [val, setVal] = useState('');
+const BoardBox = ({ id }: PropTypes) => {
+  const dispatch = useDispatch();
+  const value = useSelector<IRootState, string>((state) =>
+    getBoxValue(state, id),
+  );
+  const initialValue = useSelector<IRootState, string>((state) =>
+    getInitialBoxValue(state, id),
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const x = event.target.value;
-    if ((Number(x) > 0 && Number(x) < 10) || x === '') {
-      setVal(x);
-      setValue(x, id);
+    const value = event.target.value;
+    if ((Number(value) > 0 && Number(value) < 10) || value === '') {
+      dispatch(update({ id, value }));
     }
   };
 
@@ -23,7 +33,8 @@ const BoardBox = ({ id, setValue }: PropTypes) => {
         type="number"
         id={id}
         data-testid={id}
-        value={val}
+        disabled={initialValue !== undefined}
+        value={value === undefined ? '' : value}
         onChange={handleChange}
         min="1"
         max="9"
