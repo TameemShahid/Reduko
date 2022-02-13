@@ -3,7 +3,7 @@ import axios from 'axios';
 import { IRootState } from '../store/store';
 
 let count = 0;
-const url = 'https://vast-chamber-17969.herokuapp.com/generate';
+const url = 'https://vast-chamber-17969.herokuapp.com/';
 
 interface boardState {
   initialPuzzle: { [key: string]: string };
@@ -22,8 +22,29 @@ export const getConfiguration = createAsyncThunk(
   async (difficulty: string = 'random') => {
     count = 0;
     const req = new URL(url);
+    req.pathname = 'generate';
     req.searchParams.append('difficulty', difficulty);
     const { data } = await axios.get(req.toString());
+    return data;
+  },
+);
+
+export const solveConfiguration = createAsyncThunk(
+  'board/solve',
+  async (board: number[][]) => {
+    const req = new URL(url);
+    req.pathname = 'solve';
+    const { data } = await axios.post(
+      req.toString(),
+      { board },
+      {
+        headers: {
+          'Content-Type': '*/*',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': '*',
+        },
+      },
+    );
     return data;
   },
 );

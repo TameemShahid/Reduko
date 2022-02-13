@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Button, ButtonGroup, InputGroup } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { getConfiguration, reset } from '../../data/boardSlice';
+import validateBoard, { solveBoard } from '../../data/validatePuzzle';
 
 const ButtonStrip = () => {
   const dispatch = useDispatch();
@@ -14,12 +15,9 @@ const ButtonStrip = () => {
     dispatch(reset());
   };
 
-  const handleValidate = () => {
-    console.log('validating');
-  };
   return (
     <Container className="mt-2 text-center">
-      <ButtonGroup size="lg" aria-label="Basic example">
+      <ButtonGroup size="lg">
         <Button variant="outline-secondary" onClick={() => handleClick('easy')}>
           Easy
         </Button>
@@ -35,8 +33,11 @@ const ButtonStrip = () => {
         <Button variant="outline-secondary" onClick={handleReset}>
           Reset
         </Button>
-        <Button variant="outline-secondary" onClick={handleValidate}>
+        <Button variant="outline-secondary" onClick={validateBoard}>
           Validate
+        </Button>
+        <Button variant="outline-secondary" onClick={solveBoard}>
+          Solve
         </Button>
       </ButtonGroup>
     </Container>

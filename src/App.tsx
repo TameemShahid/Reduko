@@ -14,8 +14,8 @@ function App() {
   return (
     <div>
       <Header />
-      <ButtonStrip />
       <Board />
+      <ButtonStrip />
     </div>
   );
 }
