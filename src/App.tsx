@@ -4,6 +4,7 @@ import Header from './components/header/Header';
 import ButtonStrip from './components/buttonStrip/ButtonStrip';
 import { useDispatch } from 'react-redux';
 import { getConfiguration } from './data/boardSlice';
+import Footer from './components/footer/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function App() {
       <Header />
       <Board />
       <ButtonStrip />
+      <Footer />
     </div>
   );
 }
