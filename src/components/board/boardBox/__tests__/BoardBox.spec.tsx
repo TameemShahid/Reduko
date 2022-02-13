@@ -1,19 +1,23 @@
 import '@testing-library/react/dont-cleanup-after-each';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import store from '../../../../store/store';
+import { Provider } from 'react-redux';
 import BoardBox from '../BoardBox';
 
 describe('BoardBox', () => {
   const handleChange = jest.fn();
 
   render(
-    <table>
-      <tbody>
-        <tr>
-          <BoardBox id="A1" setValue={handleChange} />
-        </tr>
-      </tbody>
-    </table>,
+    <Provider store={store}>
+      <table>
+        <tbody>
+          <tr>
+            <BoardBox id="A1" />
+          </tr>
+        </tbody>
+      </table>
+    </Provider>,
   );
   const input: HTMLInputElement = screen.getByTestId('A1');
 

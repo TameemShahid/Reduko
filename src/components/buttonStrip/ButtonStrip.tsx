@@ -36,9 +36,9 @@ const ButtonStrip = () => {
         <Button variant="outline-secondary" onClick={validateBoard}>
           Validate
         </Button>
-        <Button variant="outline-secondary" onClick={solveBoard}>
+        {/* <Button variant="outline-secondary" onClick={solveBoard}>
           Solve
-        </Button>
+        </Button> */}
       </ButtonGroup>
     </Container>
   );
